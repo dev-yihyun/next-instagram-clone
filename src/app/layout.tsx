@@ -13,8 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Next-Instagram-clone",
+    title: {
+        default: "Next로 만드는 Instagram",
+        template: "Next로 만드는 Instagram | %s",
+    },
     description: "Next로 만드는 Instagram",
+    icons: {
+        icon: "/favicon.icon",
+    },
 };
 
 export default function RootLayout({

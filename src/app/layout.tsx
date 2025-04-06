@@ -20,9 +20,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="flex flex-col w-full max-w-screen-2xl px-10  mx-auto ">
-                <Navbar />
-                {children}
+            <body className="flex flex-col w-full max-w-screen-2xl px-10 mx-auto ">
+                <header>
+                    <Navbar />
+                </header>
+                <main>{children}</main>
             </body>
         </html>
     );

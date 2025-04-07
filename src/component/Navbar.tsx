@@ -1,8 +1,13 @@
+"use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
+
 function Navbar() {
+    const { data: session } = useSession();
     return (
         <>
             <div className="border-b border-gray-500 flex flex-row justify-between justify-items-center items-center p-4 mb-5">
@@ -22,9 +27,21 @@ function Navbar() {
 
                     <Link href="/auth">
                         <div className=" flex items-center p-2 rounded-md bg-blue-500 hover:bg-blue-700">
-                            <div className="text-base font-bold text-white cursor-pointer">
-                                Sign in
-                            </div>
+                            {session ? (
+                                <button
+                                    className="text-base font-bold text-white cursor-pointer"
+                                    onClick={() => signOut()}
+                                >
+                                    Sign out
+                                </button>
+                            ) : (
+                                <button
+                                    className="text-base font-bold text-white cursor-pointer"
+                                    onClick={() => signIn()}
+                                >
+                                    Sign in
+                                </button>
+                            )}
                         </div>
                     </Link>
                 </div>

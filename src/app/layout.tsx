@@ -1,4 +1,5 @@
 import Navbar from "@/component/Navbar";
+import AuthContext from "@/context/AuthContext";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -21,10 +22,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="flex flex-col w-full max-w-screen-2xl px-10 mx-auto ">
-                <header>
-                    <Navbar />
-                </header>
-                <main>{children}</main>
+                <AuthContext>
+                    <header>
+                        <Navbar />
+                    </header>
+                    <main>{children}</main>
+                </AuthContext>
             </body>
         </html>
     );

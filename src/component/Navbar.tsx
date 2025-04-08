@@ -9,8 +9,6 @@ import { IoSearch } from "react-icons/io5";
 
 function Navbar() {
     const { data: session } = useSession();
-    console.log(session);
-    // console.log(session?.user?.image);
     return (
         <>
             <div className="border-b border-gray-500 flex flex-row justify-between justify-items-center items-center p-4 mb-5 ">

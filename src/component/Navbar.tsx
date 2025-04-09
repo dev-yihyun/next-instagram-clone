@@ -26,10 +26,7 @@ function Navbar() {
                         <CiSquarePlus />
                     </Link>
                     {session ? (
-                        <div
-                            className="bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300 w-[50px] h-[50px] flex items-center justify-center rounded-full
-"
-                        >
+                        <div className="bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300 w-[50px] h-[50px] flex items-center justify-center rounded-full aspect-square">
                             <Image
                                 src={session?.user?.image || ""}
                                 width={40}

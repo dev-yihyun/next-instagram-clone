@@ -1,3 +1,6 @@
+import { redirect } from "next/navigation";
+
 export default function AuthPage() {
-    return <h1>Auth Page</h1>;
+    redirect("/");
+    return <h1>Redirecting...</h1>;
 }

@@ -25,3 +25,4 @@ async function SigninPage({ searchParams: { callbackUrl } }: Props) {
 }
 
 export default SigninPage;
+//npx @next/codemod@canary next-async-request-api .

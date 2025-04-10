@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
@@ -9,6 +8,7 @@ import { IoSearch } from "react-icons/io5";
 
 function Navbar() {
     const { data: session } = useSession();
+    const user = session?.user;
     return (
         <>
             <div className="border-b border-gray-500 flex flex-row justify-between justify-items-center items-center p-4 mb-5 ">
@@ -25,18 +25,15 @@ function Navbar() {
                     <Link href="/new">
                         <CiSquarePlus />
                     </Link>
-                    {session ? (
+                    {session && (
                         <div className="bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300 w-[50px] h-[50px] flex items-center justify-center rounded-full aspect-square">
-                            <Image
-                                src={session?.user?.image || ""}
-                                width={40}
-                                height={40}
-                                alt="test"
-                                className="rounded-full"
+                            <img
+                                alt="user profile"
+                                src={user?.image ?? ""}
+                                className="w-[40px] h-[40px] rounded-full"
+                                referrerPolicy="no-referrer"
                             />
                         </div>
-                    ) : (
-                        <></>
                     )}
                     <Link href="/auth">
                         <div className=" flex items-center p-2 rounded-md bg-blue-500 hover:bg-blue-700">

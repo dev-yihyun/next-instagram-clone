@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CiSquarePlus } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
+import ProfileImage from "./ProfileImage";
 
 function Navbar() {
     const { data: session } = useSession();
@@ -25,16 +26,7 @@ function Navbar() {
                     <Link href="/new">
                         <CiSquarePlus />
                     </Link>
-                    {session && (
-                        <div className="bg-gradient-to-bl from-fuchsia-600 via-rose-500 to-amber-300 w-[50px] h-[50px] flex items-center justify-center rounded-full aspect-square">
-                            <img
-                                alt="user profile"
-                                src={user?.image ?? ""}
-                                className="w-[40px] h-[40px] rounded-full"
-                                referrerPolicy="no-referrer"
-                            />
-                        </div>
-                    )}
+                    {session && <ProfileImage imageurl={user?.image ?? ""} />}
                     <Link href="/auth">
                         <div className=" flex items-center p-2 rounded-md bg-blue-500 hover:bg-blue-700">
                             {session ? (

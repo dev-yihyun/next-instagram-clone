@@ -1,5 +1,6 @@
 import Navbar from "@/component/Navbar";
 import AuthContext from "@/context/AuthContext";
+import SWRConfigContext from "@/context/SWRConfigContext";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -27,7 +28,9 @@ export default function RootLayout({
                         <Navbar />
                     </header>
 
-                    <main>{children}</main>
+                    <main>
+                        <SWRConfigContext>{children}</SWRConfigContext>
+                    </main>
                 </AuthContext>
             </body>
         </html>

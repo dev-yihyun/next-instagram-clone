@@ -1,9 +1,8 @@
-import { DefaultSession } from "next-auth";
+import { User } from "@/model/user";
+import "next-auth";
 
 declare module "next-auth" {
     interface Session {
-        user: {
-            username: string;
-        } & DefaultSession["user"];
+        user: User;
     }
 }

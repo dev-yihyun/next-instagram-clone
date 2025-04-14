@@ -11,11 +11,11 @@ async function Home() {
     }
     return (
         <section className="w-full flex flex-col md:flex-row ">
-            <div className="border w-4/5">
+            <div className="border basis-3/4">
                 <p>Following List</p>
                 <p>Post List</p>
             </div>
-            <div className="border w-1/5">
+            <div className="border basis-1/4">
                 <SideBar user={user} />
             </div>
         </section>
@@ -23,12 +23,3 @@ async function Home() {
 }
 
 export default Home;
-{
-    /* <div className='w-full basis-3/4 min-w-0'>
-        <FollowingBar />
-        <PostList />
-      </div>
-      <div className='basis-1/4 ml-8'>
-        <SideBar user={user} />
-      </div> */
-}

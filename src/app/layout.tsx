@@ -21,11 +21,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className="flex flex-col w-full max-w-screen-2xl px-10 mx-auto ">
+            <body className="flex flex-col w-full max-w-screen-2xl px-10 mx-auto bg-neutral-50">
                 <AuthContext>
                     <header>
                         <Navbar />
                     </header>
+
                     <main>{children}</main>
                 </AuthContext>
             </body>

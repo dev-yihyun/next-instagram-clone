@@ -26,7 +26,7 @@ function Navbar() {
                     <Link href="/new">
                         <CiSquarePlus />
                     </Link>
-                    {session && <ProfileImage imageurl={user?.image ?? ""} />}
+                    {session && <ProfileImage imageurl={user?.image ?? ""} imagesize="small" />}
                     <Link href="/auth">
                         <div className=" flex items-center p-2 rounded-md bg-blue-500 hover:bg-blue-700">
                             {session ? (

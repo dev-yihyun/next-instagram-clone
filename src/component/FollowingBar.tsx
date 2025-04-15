@@ -5,10 +5,6 @@ import { ClipLoader } from "react-spinners";
 import useSWR from "swr";
 import ProfileImage from "./ProfileImage";
 
-// following 목록이 없는 경우
-// 적당히 있는 경우
-// 많은 경우
-// 왼쪽에서 부터 생성하기
 type User = {
     image: string;
     username: string;

@@ -1,4 +1,5 @@
 import { User } from "@/model/user";
+import Link from "next/link";
 import ProfileImage from "./ProfileImage";
 
 type Props = {
@@ -9,7 +10,11 @@ function SideBar({ user: { name = "no_name", image, username } }: Props) {
         <>
             <div className="flex flex-col gap-4">
                 <div className="flex gap-2  flex-wrap">
-                    {image && <ProfileImage imageurl={image ?? ""} imagesize="small" />}
+                    {image && (
+                        <Link href={`/user/${username}`}>
+                            <ProfileImage imageurl={image ?? ""} imagesize="small" />
+                        </Link>
+                    )}
                     <div>
                         <h1 className="font-bold text-xl">{username}</h1>
                         <p className="text-base">{name}</p>

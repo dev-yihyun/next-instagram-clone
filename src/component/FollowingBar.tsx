@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ClipLoader } from "react-spinners";
 import useSWR from "swr";
 import ProfileImage from "./ProfileImage";
@@ -48,7 +49,9 @@ function FollowingList({ followings }: { followings: User[] }) {
     }
     return followings.map((user) => (
         <div key={user?.username} className="flex flex-col items-center min-w-[72px]">
-            <ProfileImage imagesize="large" imageurl={user?.image} />
+            <Link href={`/user/${user?.username}`}>
+                <ProfileImage imagesize="large" imageurl={user?.image} />
+            </Link>
             <p className="mt-1 text-sm">{user?.username}</p>
         </div>
     ));

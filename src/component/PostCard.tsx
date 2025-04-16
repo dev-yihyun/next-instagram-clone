@@ -1,14 +1,21 @@
+"use client";
+
 import { SimplePost } from "@/model/post";
 import Image from "next/image";
+import { useState } from "react";
 import ActionBar from "./ActionBar";
 import CommentForm from "./CommentForm";
+import PostDetail from "./PostDetail";
 import ProfileImage from "./ProfileImage";
+import ModalPortal from "./ui/Modalportal";
+import PostModal from "./ui/PostModal";
 type Props = {
     post: SimplePost;
 };
 
 function PostCard({ post }: Props) {
     const { userImage, username, image, text, likes, createdAt } = post;
+    const [openModal, setOpenModal] = useState(false);
     return (
         <>
             <article className="rounded-lg shadow-md border border-gray-200 my-5">
@@ -22,9 +29,17 @@ function PostCard({ post }: Props) {
                     className="w-full object-cover aspect-square"
                     width={500}
                     height={500}
+                    onClick={() => setOpenModal(true)}
                 />
                 <ActionBar likes={likes} username={username} text={text} createdAt={createdAt} />
                 <CommentForm />
+                {openModal && (
+                    <ModalPortal>
+                        <PostModal onClose={() => setOpenModal(false)}>
+                            <PostDetail post={post} />
+                        </PostModal>
+                    </ModalPortal>
+                )}
             </article>
         </>
     );

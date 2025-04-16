@@ -25,7 +25,7 @@ function PostList() {
 }
 function LoadingSpinner() {
     return (
-        <div className="w-full flex justify-center justify-items-center items-center text-center mt-32">
+        <div className="w-full flex justify-center justify-items-center items-center mt-32">
             <ClipLoader color="#fa9246" />
         </div>
     );

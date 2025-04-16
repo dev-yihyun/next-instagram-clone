@@ -1,5 +1,6 @@
 "use client";
 
+import useDebounce from "@/hook/debounce";
 import { ProfileUser } from "@/model/user";
 import { FormEvent, useState } from "react";
 import { ClipLoader } from "react-spinners";
@@ -7,12 +8,13 @@ import useSWR from "swr";
 import UserCard from "./UserCard";
 
 export default function UserSearch() {
-    // /api/search/${keyword}
-    // 검색하는 keyword가 있다면 /api/search/${keyword} ->유저 네임이나, 네임
-    // 검색하는 keyword가 없다면 /api/search -> 전체유지
-
     const [keyword, setKeyword] = useState("");
-    const { data: users, isLoading, error } = useSWR<ProfileUser[]>(`/api/search/${keyword}`);
+    const debouncedKeyword = useDebounce(keyword);
+    const {
+        data: users,
+        isLoading,
+        error,
+    } = useSWR<ProfileUser[]>(`/api/search/${debouncedKeyword}`);
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
     };

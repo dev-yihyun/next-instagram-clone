@@ -1,7 +1,7 @@
-type ImgaeSize = "small" | "medium" | "large";
+type ImageSize = "small" | "medium" | "large";
 type Props = {
     imageurl: string | null;
-    imagesize: ImgaeSize;
+    imagesize: ImageSize;
 };
 
 function ProfileImage({ imageurl, imagesize = "large" }: Props) {

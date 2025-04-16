@@ -1,13 +1,13 @@
 "use client";
 
-import { DetailUser, SimpleUser } from "@/model/user";
+import { HomeUser, SimpleUser } from "@/model/user";
 import Link from "next/link";
 import { ClipLoader } from "react-spinners";
 import useSWR from "swr";
 import ProfileImage from "./ProfileImage";
 
 function FollowingBar() {
-    const { data, error, isLoading } = useSWR<DetailUser>(`/api/me`);
+    const { data, error, isLoading } = useSWR<HomeUser>(`/api/me`);
     const followings = data?.following ?? [];
 
     return (

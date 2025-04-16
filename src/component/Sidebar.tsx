@@ -1,9 +1,9 @@
-import { User } from "@/model/user";
+import { AuthUser } from "@/model/user";
 import Link from "next/link";
 import ProfileImage from "./ProfileImage";
 
 type Props = {
-    user: User;
+    user: AuthUser;
 };
 function SideBar({ user: { name = "no_name", image, username } }: Props) {
     return (

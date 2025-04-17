@@ -8,6 +8,7 @@ function ProfileImage({ imageurl, imagesize = "large" }: Props) {
     return (
         <>
             <div className={Container(imagesize)}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     alt="user profile"
                     src={imageurl ?? undefined}

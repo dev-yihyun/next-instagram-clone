@@ -13,10 +13,10 @@ async function UserPage({ params: { username } }: Props) {
     }
 
     return (
-        <>
+        <section>
             <UserProfile user={user} />
             <UserPosts user={user} />
-        </>
+        </section>
     );
 }
 export default UserPage;

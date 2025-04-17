@@ -31,7 +31,7 @@ function PostCard({ post }: Props) {
                     height={500}
                     onClick={() => setOpenModal(true)}
                 />
-                <ActionBar likes={likes} username={username} text={text} createdAt={createdAt} />
+                <ActionBar post={post} />
                 <CommentForm />
                 {openModal && (
                     <ModalPortal>

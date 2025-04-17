@@ -1,12 +1,11 @@
 "use client";
 
-import { SimplePost } from "@/model/post";
+import usePosts from "@/hook/posts";
 import { ClipLoader } from "react-spinners";
-import useSWR from "swr";
 import PostCard from "./PostCard";
 
 function PostList() {
-    const { data: posts, isLoading: loading, error } = useSWR<SimplePost[]>("/api/posts");
+    const { posts, isLoading: loading, error } = usePosts();
     return (
         <section className="flex flex-col gap-5">
             {error && <ErrorMessage />}

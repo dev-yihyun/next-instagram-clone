@@ -9,13 +9,14 @@ import HeartIcon from "./ui/icons/HeartIcon";
 import ToggleButton from "./ui/ToggleButton";
 type Props = {
     post: SimplePost;
+    children?: React.ReactNode;
 };
 
 export function parseDate(date: string) {
     return format(date);
 }
-export default function ActionBar({ post }: Props) {
-    const { id, likes, username, text, createdAt } = post;
+export default function ActionBar({ post, children }: Props) {
+    const { id, likes, createdAt } = post;
     const { user, setBookmark } = useMe();
     const { setLike } = usePosts();
 
@@ -49,12 +50,7 @@ export default function ActionBar({ post }: Props) {
                 likes?.length > 1 ? "likes" : "like"
             }`}</p>
             <div className="px-4 py-1">
-                {text && (
-                    <div>
-                        <span className="font-bold mr-1">{username}</span>
-                        {text}
-                    </div>
-                )}
+                {children}
                 <div className="text-xs text-neutral-500 uppercase my-2">
                     {parseDate(createdAt)}
                 </div>

@@ -39,7 +39,7 @@ export async function getPost(id: string) {
         "createdAt":_creatdAt
       }`
         )
-        .then(mapPosts);
+        .then((post) => ({ ...post, image: urlFor(post.image) }));
 }
 export async function getPostsOf(username: string) {
     return client

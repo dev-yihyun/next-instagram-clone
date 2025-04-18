@@ -11,7 +11,6 @@ type Props = {
     post: SimplePost;
     children?: React.ReactNode;
 };
-
 export function parseDate(date: string) {
     return format(date);
 }
@@ -30,9 +29,10 @@ export default function ActionBar({ post, children }: Props) {
     const handleBookmark = (bookmark: boolean) => {
         user && setBookmark(id, bookmark);
     };
+
     return (
         <>
-            <div className="flex justify-between my-2 px-4 text-2xl">
+            <div className="flex justify-between my-2 px-4">
                 <ToggleButton
                     toggled={liked}
                     onToggle={handleLike}
@@ -46,14 +46,12 @@ export default function ActionBar({ post, children }: Props) {
                     offIcon={<BookmarkIcon />}
                 />
             </div>
-            <p className="text-sm font-bold  my-2 px-4">{`${likes?.length ?? 0} ${
-                likes?.length > 1 ? "likes" : "like"
-            }`}</p>
             <div className="px-4 py-1">
+                <p className="text-sm font-bold mb-2">{`${likes?.length ?? 0} ${
+                    likes?.length > 1 ? "likes" : "like"
+                }`}</p>
                 {children}
-                <div className="text-xs text-neutral-500 uppercase my-2">
-                    {parseDate(createdAt)}
-                </div>
+                <p className="text-xs text-neutral-500 uppercase my-2">{parseDate(createdAt)}</p>
             </div>
         </>
     );

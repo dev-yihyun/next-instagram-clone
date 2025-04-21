@@ -1,7 +1,9 @@
 "use client";
 import { AuthUser } from "@/model/user";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import PostUserAvatar from "./PostUserAvatar";
 import Button from "./ui/Button";
 import FilesIcon from "./ui/icons/FilesIcon";
@@ -21,6 +23,7 @@ export default function NewPost({ user: { username, image } }: Props) {
             setFile(files[0]);
         }
     };
+
     const handleDrag = (e: React.DragEvent) => {
         if (e.type === "dragenter") {
             setDragging(true);
@@ -28,9 +31,11 @@ export default function NewPost({ user: { username, image } }: Props) {
             setDragging(false);
         }
     };
+
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
     };
+
     const handleDrop = (e: React.DragEvent) => {
         e.preventDefault();
         setDragging(false);
@@ -39,10 +44,44 @@ export default function NewPost({ user: { username, image } }: Props) {
             setFile(files[0]);
         }
     };
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string>();
+    const textRef = useRef<HTMLTextAreaElement>(null);
+    const router = useRouter();
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        if (!file) return;
+
+        setLoading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("text", textRef.current?.value ?? "");
+
+        fetch("/api/posts/", { method: "POST", body: formData }) //
+            .then((res) => {
+                if (!res.ok) {
+                    setError(`${res.status} ${res.statusText}`);
+                    return;
+                }
+                router.push("/");
+            })
+            .catch((err) => setError(err.toString()))
+            .finally(() => setLoading(false));
+    };
     return (
         <section className="w-full max-w-xl flex flex-col items-center mt-6">
+            {loading && (
+                <div className="absolute inset-0 z-20 text-center pt-[30%] bg-sky-500/20">
+                    <ClipLoader color="#fa9246" />
+                </div>
+            )}
+            {error && (
+                <p className="w-full bg-red-100 text-red-600 text-center p-4 mb-4 font-bold">
+                    {error}
+                </p>
+            )}
             <PostUserAvatar username={username} image={image ?? ""} />
-            <form className="w-full flex flex-col mt-2">
+            <form className="w-full flex flex-col mt-2" onSubmit={handleSubmit}>
                 <input
                     name="input"
                     id="input-upload"
@@ -71,7 +110,7 @@ export default function NewPost({ user: { username, image } }: Props) {
                         </div>
                     )}
                     {file && (
-                        <div className="relative w-full aspect-square ">
+                        <div className="relative w-full aspect-square overflow-hidden">
                             {/* overflow-hidden */}
                             <Image
                                 className="object-cover"
@@ -90,6 +129,7 @@ export default function NewPost({ user: { username, image } }: Props) {
                     required
                     rows={10}
                     placeholder={"Write a caption..."}
+                    ref={textRef}
                 />
                 <Button text="Publish" onClick={() => {}} />
             </form>
